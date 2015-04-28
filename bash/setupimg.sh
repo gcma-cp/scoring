@@ -52,7 +52,12 @@ then
 		echo \  >> config.precfg
 		echo "scorex11=1" >> config.precfg
 	fi 
-
+	echo Score PermitRootLogin option\? \(Y or N\)
+	read c
+	if [ "$c" == "Y" ]; then
+		echo \ >> config.precfg
+		echo "scorepermrootlogin=1" >> config.precfg
+	fi
 else
 	echo Okay, moving on then
 fi

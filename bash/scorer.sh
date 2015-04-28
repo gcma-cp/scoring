@@ -50,4 +50,12 @@ if [ "$?" -eq "0" ]; then
 		let score=$score+1
 	fi
 fi
+cat config.cfg | base64 --decode | grep "scorepermrootlogin=1" &> /dev/null
+if [ "$?" -eq "0" ]; then
+	grep -i "PermitRootLogin no" /etc/ssh/sshd_config &> /dev/null
+	if [ "$?" -eq "0" ]; then
+		echo PermitRootLogin disabled. Thank God.
+		let score=$score+1
+	fi
+fi
 echo Score is $score"00"
