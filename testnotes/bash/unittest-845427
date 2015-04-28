@@ -1,0 +1,43 @@
+UNIT TEST:
+
+Set up users:
+	andersons
+	zellj
+	baileym
+
+Set up services:
+	saned
+	ssh
+	logkeys
+	
+to be scored
+
+\\\\\\\
+RESULTS:
+Produced:
+cm9ndWV1c2Vycz1hbmRlcnNvbnMsemVsbGosYmFpbGV5bSwgCiMjTkVXTElORQpyb2d1ZXNlcnZz
+PXNhbmVkLHNzaCxsb2drZXlzLA==
+
+Which translates to:
+rogueusers=andersons,zellj,baileym, 
+##NEWLINE
+rogueservs=saned,ssh,logkeys,
+
+Suggestions:
+Change ##NEWLINE to literally just a blank line
+Fix the status output
+
+FIXED (Y)
+
+Retrying the config with same unit tests
+
+Current config:
+cm9ndWV1c2Vycz1hbmRlcnNvbnMsemVsbGosYmFpbGV5bSwgCiAKcm9ndWVzZXJ2cz1zYW5lZCxh
+cGFjaGUyLHNzaCw=
+which decodes to
+rogueusers=andersons,zellj,baileym, 
+ 
+rogueservs=saned,apache2,ssh,
+
+Unit test aced (Y)
+
