@@ -1,3 +1,9 @@
+#!/bin/sh
+
+# This script needs to be run in the same folder as scorer with write perms
+# This script is intended to prep the config file for the scorer
+# It's a user friendly way to do things
+
 echo Enter any rogue users you want to score, or alternatively \"done\" when done.
 echo -n "rogueusers=" > config.precfg
 while [ "$p" != "done" ]
