@@ -40,8 +40,11 @@ To deploy the bash version
 	
 To score, run these as root
 	nano /root/.bashrc
+	
 	and add the lines:
+	
 	/absolutepath/to/scorer.sh
+	
 	alias score="/absolutepath/to/scorer.sh"
 	
 It'll run whenever you elevate as root or whenever you run score as root
