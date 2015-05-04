@@ -22,14 +22,14 @@ The process for bash is as follows:
 Now whenever they elevate to root or whenever they run "score" as root, it'll score.
 
 To deploy the bash version
-	cd ~
-	wget https://github.com/mike-bailey/scoring/archive/master.zip
-	unzip master.zip
-	cd bash
-	chmod +x ./scorer.sh
-	chmod +x ./setupimg.sh
-	*DO YOUR IMAGE CONFIGURATION*
-	./setupimg.sh
+		cd ~
+		wget https://github.com/mike-bailey/scoring/archive/master.zip
+		unzip master.zip
+		cd bash
+		chmod +x ./scorer.sh
+		chmod +x ./setupimg.sh
+		*DO YOUR IMAGE CONFIGURATION*
+		./setupimg.sh
 	
 To score, run these as root
 	nano /root/.bashrc
