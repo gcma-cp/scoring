@@ -59,6 +59,19 @@ if [ "$?" -eq "0" ]; then
 	fi
 fi
 
-	stat -c "%a" 
+#And now aliases
+rougealias=( $(cat config.cfg | base64 --decode | grep roguealias | sed 's/roguealias\=//g' | sed 's/,/\ /g'  ))
+# Rogue alias portion
+for rougealia in "${rougealias[@]}"
+do
+        alias | grep $rougealia\=
+                if [ $? -ne 0 ];
+                then
+                        echo $rougealia alias cancelled
+                        let score=$score+1
+                fi
+done
+
+
 
 echo Score is $score"00"
