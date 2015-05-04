@@ -61,6 +61,35 @@ then
 else
 	echo Okay, moving on then
 fi
+clear
+echo Enter any rogue aliases \(the base only\, so only what\'s before the \= when you aliased it\) you want to score\, or alternatively \"done\" when done
+echo \  >> config.precfg
+echo -n "roguealias=" >> config.precfg
+while [ "$r" != "done" ]
+do
+        echo Rogue alias: 
+        read r
+        if [ "$r" != "done" ];
+        then
+                echo -n $r, >> config.precfg
+        fi
+done
+clear
+echo Enter package name \(not exclusive, if you enter the name apache and apache2 is installed, it\'ll score for apache so long as apache2 exists\)
+echo Or enter done when done
+echo \  >> config.precfg
+echo -n "roguepackages=" >> config.precfg
+while [ "$f" != "done" ]
+do
+        echo Rogue packages: 
+        read f
+        if [ "$f" != "done" ];
+        then
+                echo -n $f, >> config.precfg
+        fi
+done
+clear
+
 
 base64 config.precfg > config.cfg
 rm -rf config.precfg
