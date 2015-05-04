@@ -16,8 +16,8 @@ do
 		then
 		echo $rougeuser deleted
 		let score=$score+1
-		else
-		echo DEBUG: $rougeuser still exists
+		# else
+		#   echo DEBUG: $rougeuser still exists
 		fi
 done
 #And now services
@@ -30,8 +30,8 @@ do
 		then
 			echo $rougeservice stopped
 			let score=$score+1
-		else
-			echo DEBUG: $rougeservice still exists
+		# else
+		#	echo DEBUG: $rougeservice still exists
 		fi
 done
 cat config.cfg | base64 --decode | grep "scorex11=1" &> /dev/null
@@ -58,4 +58,7 @@ if [ "$?" -eq "0" ]; then
 		let score=$score+1
 	fi
 fi
+
+	stat -c "%a" 
+
 echo Score is $score"00"
