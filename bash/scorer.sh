@@ -93,5 +93,14 @@ do
                 fi
 		let potential=$potential+1
 done
+cat config.cfg | base64 --decode | grep "scoreufw=1" &> /dev/null
+if [ "$?" -eq "0" ]; then
+	ufw status | grep "Status: active"
+	if [ "$?" -eq "0" ]; then
+		echo UFW is active
+		let score=$score+1
+	fi
+	let potential=$potential+1
+fi
 
 echo Score is $score"00" out of $potential"00"

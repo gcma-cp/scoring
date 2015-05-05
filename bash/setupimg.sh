@@ -89,6 +89,14 @@ do
         fi
 done
 clear
+        echo Score UFW\? \(Y or N\)
+        read w
+        if [ "$w" == "Y" ]; then
+                echo \  >> config.precfg
+                echo "scoreufw=1" >> config.precfg 
+        fi
+
+clear
 
 
 base64 config.precfg > config.cfg
