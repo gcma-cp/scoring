@@ -3,7 +3,8 @@
 # This script needs to be run in the same folder as scorer with write perms
 # This script is intended to prep the config file for the scorer
 # It's a user friendly way to do things
-
+echo Here\'s your current setting\:
+cat config.cfg | base64 --decode 
 echo Enter any rogue users you want to score, or alternatively \"done\" when done.
 echo -n "rogueusers=" > config.precfg
 while [ "$p" != "done" ]
@@ -95,9 +96,19 @@ clear
                 echo \  >> config.precfg
                 echo "scoreufw=1" >> config.precfg 
         fi
-
 clear
-
+	echo Score NOPASSWD rule in sudoers\? \(Y or N \)
+	read no
+	if [ "$no" == "Y" ]; then
+		echo \  >> config.precfg
+		echo "scorenopasswd=1" >> config.precfg
+	fi
+	echo Score TCP SYN Cookies\? \(Y or N \)
+	read lmao
+	if [ "$lmao" == "Y" ]; then
+		echo \  >> config.precfg
+		echo "scoretcpsyn=1" >> config.precfg
+	fi
 
 base64 config.precfg > config.cfg
 rm -rf config.precfg
