@@ -110,4 +110,14 @@ if [ "$?" -eq "0" ]; then
 		let score=$score+1
 	fi
 fi
+cat config.cfg | base64 --decode | grep "scoretcpsyn=1" &> /dev/null
+if [ "$?" -eq "0" ]; then
+	cat $(find /etc -name sysctl.conf | grep 's/\/etc\/ufw\/sysctl.conf//g') | grep tcp_syncookies | grep -v \# | grep 1
+	if [ "$?" -eq "0" ]; then
+		echo TCP SYN Cookies enabled
+		let score=$score+1
+	fi
+	let potential=$potential+1
+fi
+
 echo Score is $score"00" out of $potential"00"
