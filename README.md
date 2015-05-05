@@ -22,6 +22,7 @@ The process for bash is as follows:
 Now whenever they elevate to root or whenever they run "score" as root, it'll score.
 
 To deploy the bash version
+
 		cd ~
 		
 		wget https://github.com/mike-bailey/scoring/archive/master.zip
@@ -39,6 +40,7 @@ To deploy the bash version
 		./setupimg.sh
 	
 To score, run these as root
+
 	nano /root/.bashrc
 	
 	and add the lines:
