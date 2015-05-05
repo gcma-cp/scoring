@@ -95,8 +95,13 @@ clear
                 echo \  >> config.precfg
                 echo "scoreufw=1" >> config.precfg 
         fi
-
 clear
+	echo Score NOPASSWD rule in sudoers\? \(Y or N \)
+	read tits
+	if [ "$tits" == "Y" ]; then
+		echo \  >> config.precfg
+		echo "scorenopasswd=1" >> config.precfg
+	fi
 
 
 base64 config.precfg > config.cfg

@@ -102,5 +102,12 @@ if [ "$?" -eq "0" ]; then
 	fi
 	let potential=$potential+1
 fi
-
+cat config.cfg | base64 --decode | grep "scorenopasswd=1" &> /dev/null
+if [ "$?" -eq "0" ]; then
+	grep NOPASSWD /etc/sudoers &> /dev/null
+	if [ "$?" -ne "0" ]; then
+		echo NOPASSWD rule removed
+		let score=$score+1
+	fi
+fi
 echo Score is $score"00" out of $potential"00"
