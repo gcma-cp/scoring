@@ -3,6 +3,43 @@
 # This script needs to be run in the same folder as scorer with write perms
 # This script is intended to prep the config file for the scorer
 # It's a user friendly way to do things
+if [ "$1" == "--deploy" ]; then
+	echo \#NEWLINE >> /root/.bashrc
+	echo alias score\=\"$(pwd)/scorer.sh\" >> /root/.bashrc 
+	echo $(pwd)/scorer.sh  >> /root/.bashrc
+	echo Deploy done
+	exit
+fi
+if [ "$1" == "--testconfig" ]; then
+	gucci=1
+	cat config.cfg
+	if [ "$?" == "1" ]; then
+	echo No config file found\? No bueno. Run the script normally.
+	gucci=0
+		if [ $(base64 --decode config.cfg) != $(base64 --decode config.cfg | strings) ]; then
+			echo No valid encoding found
+			gucci=0
+			exit
+		fi
+	fi
+		if [ "$gucci" != "0" ]; then
+			echo GUCCI
+		fi
+	exit
+fi
+if [ "$1" == "--viewconfig" ]; then
+	echo Here is your config
+	base64 --decode config.cfg
+	exit
+fi
+if [ "$1" == "-h" ] || [ "$1" == "--help" ]; then
+	echo Welcome to the GCM Academy Cyber Club scorer
+	echo \-\-deploy will set it up to run when you elevate to root or run score
+	echo \-\-testconfig will do basic checks \(look for config file, valid base64\)
+	echo Running it without a parameter will set up the image
+	echo \-\-help or \-h will produce this
+	exit
+fi
 echo Here\'s your current setting\:
 cat config.cfg | base64 --decode 
 echo Enter any rogue users you want to score, or alternatively \"done\" when done.
