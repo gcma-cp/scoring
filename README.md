@@ -39,14 +39,15 @@ To deploy the bash version
 		
 		./setupimg.sh
 	
-To score, run these as root
+To score, 
 
-	nano /root/.bashrc
+		./setupimg.sh --deploy
+
+Other options include:
+
+		./setupimg.sh --help (or -h)
 	
-	and add the lines:
-	
-	/absolutepath/to/scorer.sh
-	
-	alias score="/absolutepath/to/scorer.sh"
-	
-It'll run whenever you elevate as root or whenever you run score as root
+		./setupimg.sh --testconfig
+
+		./setupimg.sh --viewconfig
+
