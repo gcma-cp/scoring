@@ -29,11 +29,13 @@ To deploy the bash version
 		
 		unzip master.zip
 		
+		cd scoring-master
+
 		cd bash
 		
-		chmod +x ./scorer.sh
+		chmod +x scorer.sh
 		
-		chmod +x ./setupimg.sh
+		chmod +x setupimg.sh
 		
 		*DO YOUR IMAGE CONFIGURATION*
 		
