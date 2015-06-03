@@ -29,6 +29,8 @@ To deploy the bash version
 		
 		unzip master.zip
 		
+		cd scoring-master
+
 		cd bash
 		
 		chmod +x ./scorer.sh
