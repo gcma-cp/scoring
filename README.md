@@ -33,9 +33,9 @@ To deploy the bash version
 
 		cd bash
 		
-		chmod +x ./scorer.sh
+		chmod +x scorer.sh
 		
-		chmod +x ./setupimg.sh
+		chmod +x setupimg.sh
 		
 		*DO YOUR IMAGE CONFIGURATION*
 		
