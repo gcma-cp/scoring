@@ -10,6 +10,11 @@ if [ "$1" == "--deploy" ]; then
 	echo Deploy done
 	exit
 fi
+if [ "$1" == "--functionality" ]; then
+	echo Current functionality:
+	curl http://michaelbailey.co/bashscorer
+	exit
+fi
 if [ "$1" == "--testconfig" ]; then
 	gucci=1
 	cat config.cfg
@@ -72,6 +77,16 @@ do
         then
                 echo -n $q, >> config.precfg
         fi
+done
+clear
+echo  \  >> config.precfg
+echo  \  >> config.precfg
+echo Enter any rogue sudoers \(if they comment it out, it will score as gone\) or done when done
+echo -n "roguesudoers=" >> config.precfg
+while [ "$sud" != "done" ]; 
+do
+	read sud
+	echo -n $sud, >> config.precfg
 done
 clear
 echo Do you want to configure SSH configuration server scoring \(Y or N\)

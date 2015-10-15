@@ -23,6 +23,18 @@ do
 		fi
 			let potential=$potential+1
 done
+rougesudos=( $(cat config.cfg | base64 --decode | grep roguesudos | sed 's/roguesudos=//g' | sed 's/,//g'))
+for sudoers in "${rougesudos[@]}"
+do
+	sudo -l -U $sudoers | grep "not allowed"
+	if [ $? -eq 0 ];
+	then
+		echo $sudoers sudo rule removed
+		let score=$score+1
+	fi
+
+done
+
 #And now services
 rougeservs=( $(cat config.cfg | base64 --decode | grep rogueservs | sed 's/rogueservs=//g' | sed 's/,/ /g') )
 # Rogue user portion
@@ -38,6 +50,7 @@ do
 		fi
 			let potential=$potential+1
 done
+#clear
 cat config.cfg | base64 --decode | grep "scorex11=1" &> /dev/null
 if [ "$?" -eq "0" ]; then
 	grep -i "X11Forwarding yes" /etc/ssh/sshd_config &> /dev/null
@@ -56,6 +69,7 @@ if [ "$?" -eq "0" ]; then
 	fi
 		let potential=$potential+1
 fi
+#echo Passed rootlogin
 cat config.cfg | base64 --decode | grep "scorepermrootlogin=1" &> /dev/null
 if [ "$?" -eq "0" ]; then
 	grep -i "PermitRootLogin no" /etc/ssh/sshd_config &> /dev/null
@@ -93,6 +107,7 @@ do
                 fi
 		let potential=$potential+1
 done
+#echo Passed packages
 cat config.cfg | base64 --decode | grep "scoreufw=1" &> /dev/null
 if [ "$?" -eq "0" ]; then
 	ufw status | grep "Status: active"
@@ -112,7 +127,7 @@ if [ "$?" -eq "0" ]; then
 fi
 cat config.cfg | base64 --decode | grep "scoretcpsyn=1" &> /dev/null
 if [ "$?" -eq "0" ]; then
-	cat $(find /etc -name sysctl.conf | grep 's/\/etc\/ufw\/sysctl.conf//g') | grep tcp_syncookies | grep -v \# | grep 1
+	sysctl -a | grep syncookies | grep -v \# | grep 1 &> /dev/null
 	if [ "$?" -eq "0" ]; then
 		echo TCP SYN Cookies enabled
 		let score=$score+1
